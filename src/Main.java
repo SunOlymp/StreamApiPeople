@@ -33,25 +33,33 @@ public class Main {
 
         System.out.println(familyOfSoldier);
 
-        List<String> manWorker = person.stream()
-                .filter(value -> value.getSex() == Sex.MAN)
-                .filter(value -> value.getEducation() == Education.HIGHER)
-                .filter(value -> value.getAge() >= 18)
-                .filter(value -> value.getAge() <= 65)
+//        List<String> manWorker = person.stream()
+//                .filter(value -> value.getSex() == Sex.MAN)
+//                .filter(value -> value.getEducation() == Education.HIGHER)
+//                .filter(value -> value.getAge() >= 18)
+//                .filter(value -> value.getAge() <= 65)
+//                .sorted(Comparator.comparing(Person::getFamily))
+//                .map(Person::getFamily).collect(Collectors.toList());
+//
+//        System.out.println(manWorker);
+//
+//        List<String> womanWorker = person.stream()
+//                .filter(value -> value.getSex() == Sex.WOMAN)
+//                .filter(value -> value.getEducation() == Education.HIGHER)
+//                .filter(value -> value.getAge() >= 18)
+//                .filter(value -> value.getAge() <= 60)
+//                .sorted(Comparator.comparing(Person::getFamily))
+//                .map(Person::getFamily).collect(Collectors.toList());
+//
+//        System.out.println(womanWorker);
+
+        List<String> workers = person.stream()
+                .filter(value -> (value.getSex() == Sex.MAN && (value.getAge() >= 18 && value.getAge() <= 65)) ||
+                        (value.getSex() == Sex.WOMAN && (value.getAge() >= 18 && value.getAge() <= 60)))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(Person::getFamily).collect(Collectors.toList());
 
-        System.out.println(manWorker);
-
-        List<String> womanWorker = person.stream()
-                .filter(value -> value.getSex() == Sex.WOMAN)
-                .filter(value -> value.getEducation() == Education.HIGHER)
-                .filter(value -> value.getAge() >= 18)
-                .filter(value -> value.getAge() <= 60)
-                .sorted(Comparator.comparing(Person::getFamily))
-                .map(Person::getFamily).collect(Collectors.toList());
-
-        System.out.println(womanWorker);
+        System.out.println(workers);
 
     }
 }
